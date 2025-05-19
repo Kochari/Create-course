@@ -6,8 +6,10 @@ import com.example.create_course.entity.Course;
 import com.example.create_course.mapper.CourseMapper;
 import com.example.create_course.service.CourseService;
 import jakarta.validation.Valid;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CourseController {
-    @Autowired
-    private CourseService courseService;
-    @Autowired
-    private CourseMapper courseMapper;
+
+     CourseService courseService;
+
+     CourseMapper courseMapper;
 
     @PostMapping("/create")
     public ResponseEntity<String> createCourse(@Valid @RequestBody CourseRequest course) {
